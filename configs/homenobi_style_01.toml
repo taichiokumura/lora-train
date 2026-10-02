@@ -1,0 +1,59 @@
+# === 自動生成: 03_make_config.py が train_config.json から生成 ===
+# 画像100枚 x repeats2 x epochs10 / (bs1 x ga1) = 約2000 steps
+
+# --- モデル / データ ---
+pretrained_model_name_or_path = "C:/Users/okuta/lora-train/models/Illustrious-XL-v0.1.safetensors"
+train_data_dir = "C:/Users/okuta/lora-train/datasets/homenobi_style_01/img"
+output_dir = "C:/Users/okuta/lora-train/output/homenobi_style_01"
+output_name = "homenobi_style_01"
+logging_dir = "C:/Users/okuta/lora-train/logs"
+caption_extension = ".txt"
+keep_tokens = 1
+
+# --- 解像度 / アスペクト比バケット ---
+resolution = "1024,1024"
+enable_bucket = true
+min_bucket_reso = 512
+max_bucket_reso = 1536
+bucket_reso_steps = 64
+bucket_no_upscale = true
+
+# --- LoRA ネットワーク ---
+network_module = "networks.lora"
+network_dim = 32
+network_alpha = 16
+network_train_unet_only = true
+
+# --- 学習スケジュール ---
+max_train_epochs = 10
+train_batch_size = 1
+gradient_accumulation_steps = 1
+save_every_n_epochs = 1
+save_model_as = "safetensors"
+save_precision = "fp16"
+seed = 42
+
+# --- 最適化 ---
+optimizer_type = "AdamW8bit"
+learning_rate = 0.0001
+unet_lr = 0.0001
+lr_scheduler = "cosine"
+lr_warmup_steps = 100
+max_grad_norm = 1.0
+min_snr_gamma = 5
+noise_offset = 0.0
+prior_loss_weight = 1.0
+
+# --- 8GB VRAM 省メモリ ---
+mixed_precision = "bf16"
+full_bf16 = true
+gradient_checkpointing = true
+cache_latents = true
+cache_latents_to_disk = true
+cache_text_encoder_outputs = true
+cache_text_encoder_outputs_to_disk = true
+sdpa = true
+no_half_vae = true
+persistent_data_loader_workers = true
+max_data_loader_n_workers = 2
+

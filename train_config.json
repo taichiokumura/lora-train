@@ -1,0 +1,52 @@
+{
+  "_comment": "=== LoRA画風学習 マスター設定 ===  ここを編集すれば全スクリプトに反映されます。詳しい説明は README.md を参照。",
+
+  "project_name": "homenobi_style_01",
+  "trigger_word": "homenobi_style",
+
+  "base_model": "models/Illustrious-XL-v0.1.safetensors",
+
+  "_dataset": "--- データセット ---",
+  "num_repeats": 2,
+  "epochs": 10,
+  "save_every_n_epochs": 1,
+  "resolution": 1024,
+
+  "_network": "--- LoRAネットワーク (画風: dim大きめが有利。conv_dimを入れると画風再現↑だがVRAM↑) ---",
+  "network_dim": 32,
+  "network_alpha": 16,
+  "conv_dim": 0,
+  "conv_alpha": 0,
+
+  "_optim": "--- 最適化 ---",
+  "unet_lr": 1e-4,
+  "lr_scheduler": "cosine",
+  "lr_warmup_ratio": 0.05,
+  "optimizer": "AdamW8bit",
+  "train_batch_size": 1,
+  "gradient_accumulation_steps": 1,
+  "seed": 42,
+  "min_snr_gamma": 5,
+  "noise_offset": 0.0,
+
+  "_vram8gb": "--- 8GB VRAM 省メモリ設定 (基本このままでOK。OOM時は fp8_base を true、resolution を 896/768 に) ---",
+  "train_unet_only": true,
+  "cache_text_encoder_outputs": true,
+  "full_bf16": true,
+  "fp8_base": false,
+
+  "_tagger": "--- 自動タグ付け (WD14) ---",
+  "tagger_repo": "SmilingWolf/wd-eva02-large-tagger-v3",
+  "tagger_threshold": 0.35,
+  "remove_tags": "",
+
+  "_test": "--- テスト生成 (reForge API) ---",
+  "reforge_api_url": "http://127.0.0.1:7860",
+  "reforge_lora_dir": "C:/Users/okuta/SDWeb/stable-diffusion-webui-reForge/models/Lora",
+  "test_lora_weight": 0.8,
+  "test_prompts": [
+    "1girl, solo, upper body, looking at viewer, simple background, masterpiece, best quality",
+    "1girl, full body, standing, outdoors, cowboy shot, masterpiece, best quality"
+  ],
+  "test_negative": "worst quality, low quality, jpeg artifacts, bad anatomy, bad hands"
+}

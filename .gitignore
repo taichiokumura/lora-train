@@ -1,0 +1,9 @@
+﻿venv/
+models/
+output/
+datasets/
+logs/
+sd-scripts/
+__pycache__/
+*.py[cod]
+*.log
